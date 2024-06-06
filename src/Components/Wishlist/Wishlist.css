@@ -1,0 +1,17 @@
+.wish-btns{
+    border: 1px solid black;
+    padding: 10px 20px;
+    background-color: red;
+}
+
+.wishlist{
+    justify-content: center;
+    align-items: center;
+    padding: 5rem 0;
+}
+
+.wishlist img{
+    height: 100%;
+    width: 400px;
+    object-fit: cover;
+}

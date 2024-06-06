@@ -1,0 +1,20 @@
+.nav-link{
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.navbar-color{
+    color: white;
+    background-color: transparent;
+}
+
+.navbar-color-scroll{
+    background-color: white;
+}
+
+.navbar-text-color{
+    color: white;
+}
+.navbar-text-color-scroll{
+    color: black;
+}

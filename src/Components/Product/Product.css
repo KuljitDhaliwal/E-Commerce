@@ -1,0 +1,132 @@
+.product-card{
+    width: 18rem;
+    position: relative;
+    height: 100%;
+    padding: 10px;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+}
+
+.in-card{
+    display: grid;
+    place-items: center;
+    padding: 10px;
+}
+
+.in-card img{
+    height: 300px;
+    width: 100%;
+    object-fit: contain;
+}
+
+.hover-card-details{
+    position: absolute;
+    z-index: 2;
+    top: 1rem;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    gap: 20px;
+    transition: 0.2s ease-in-out all;
+}
+
+.product-card:hover .hover-card-details{
+    opacity: 1;
+    right: 1rem;
+}
+
+.hover-card-details .heart{
+    position: relative;
+}
+
+.heart-tooltip{
+    position: absolute;
+    left: -7rem;
+    background-color: black;
+    color: white;
+    display: none;
+}
+
+.hover-card-details .heart:hover .heart-tooltip{
+    opacity: 1;
+    display: block;
+}
+
+.price-add-to-cart{
+    height: 25px;
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 0px;
+}
+
+.in-price{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    transition: .2s ease-in-out top;
+}
+
+.product-card:hover .in-price{
+    top: -25px;
+}
+
+.cart-style{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.iconBack{
+    background-color: grey;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+}
+
+@media (max-width: 1200px){
+    .in-card img{
+        height: 200px;
+        width: 100%;
+        object-fit: contain;
+    }
+    .product-card{
+        width: 14rem;
+    }
+}
+@media (max-width: 992px){
+    .in-card img{
+        height: 150px;
+        width: 100%;
+        object-fit: contain;
+    }
+    .product-card{
+        width: 14rem;
+    }
+}
+@media (max-width: 768px){
+    .in-card img{
+        height: 150px;
+        width: 100%;
+        object-fit: contain;
+    }
+    .product-card{
+        width: 14rem;
+    }
+}
+
+@media (max-width: 576px){
+
+.in-card img{
+    height: 150px;
+    width: 100%;
+    object-fit: contain;
+}
+
+.product-card{
+    width: 14rem;
+
+}
+}

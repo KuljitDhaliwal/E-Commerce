@@ -1,0 +1,14 @@
+.products-text{
+    position: relative;
+}
+
+.product-text-line{
+    display: flex;
+    justify-content: center;
+}
+
+.product-text-line hr{
+    width: 150px;
+    margin-top: 1.5rem;
+}
+

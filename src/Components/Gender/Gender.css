@@ -1,0 +1,65 @@
+.gender{
+    width: 100%;
+}
+
+
+
+.gender-type{
+    position: relative;
+    height: 385px;
+    padding: 2rem;  
+    transition: 0.2s ease-in-out all;
+    z-index: 2;
+    overflow: hidden;
+    background-color: red;
+}
+.women{
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    transition: 0.2s ease-in-out all;
+    z-index: -1;
+    position: absolute;
+    background: url(../Assets/women.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.men{
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    transition: 0.2s ease-in-out all;
+    z-index: -1;
+    position: absolute;
+    background: url(../Assets/men.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.gender-type:hover .women{
+    transform: scale(1.1);
+}
+.gender-type:hover .men{
+    transform: scale(1.1);
+}
+
+.gender-type button{
+    border: 1px solid black;
+    padding: 10px 20px;
+}
+
+
+@media (max-width: 992px){
+.men,.women{
+    background-position: 50% 100%;
+}
+
+}
+@media (max-width: 576px){
+    .gender-type{
+        height: 285px;
+    }
+    
+}

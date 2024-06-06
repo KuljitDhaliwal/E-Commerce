@@ -1,0 +1,33 @@
+.hero-sec{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: url(../Assets/home_fashion_banner.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 100%;
+}
+
+.hero-text button{
+    border: 1px solid black;
+    padding: 10px 20px;
+}
+
+.hero-text h1{
+    font-size: 8vw;
+}
+.hero-text h5{
+    font-size: 1.5vw;
+}
+
+@media (max-width: 768px){
+    .hero-sec{
+        background-position: 50% 100%;
+    }
+}
+@media (max-width: 576px){
+    .hero-sec{
+        background-position: 60% 100%;
+    }
+}
