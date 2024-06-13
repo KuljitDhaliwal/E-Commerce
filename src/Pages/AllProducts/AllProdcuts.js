@@ -1,8 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import Product from '../Product/Product';
-import Cart from '../Cart/Cart';
-import { closeSidebar } from '../Redux/Slices/CartSlice'
+import Product from '../../Components/Product/Product';
+import Cart from '../../Components/Cart/Cart';
+import { closeSidebar } from '../../Redux/Slices/CartSlice'
 import { useDispatch } from 'react-redux'
 
 function AllProdcuts() {

@@ -1,0 +1,33 @@
+.cus-modal{
+    position: fixed;
+    z-index: 9999999;
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    background-color: rgba(59, 56, 56, 0.567);
+    overflow: auto;
+}
+
+.in-modal{
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    background-color: white;
+}
+
+.product-details{
+    overflow: auto;
+    max-height: 80vh;
+    overflow: scroll;
+    padding: 4rem;
+}
+
+

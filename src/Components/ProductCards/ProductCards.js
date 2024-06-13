@@ -1,26 +1,32 @@
 import React, {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchData } from '../Redux/Slices/indexSlice';
+import { fetchData } from '../../Redux/Slices/indexSlice';
 import Loading from '../Loading';
 import './ProductCards.css'
 import Product from '../Product/Product';
 
-function ProductCards() {
-    const dispatch = useDispatch();
-  const {allData, filteredProdcuts, selectedCategory} = useSelector((state) => state.data);
-  console.log('Filtered', filteredProdcuts)
+
+function ProductCards({cat}) {
+  const dispatch = useDispatch();
+  const {allData, filteredProdcuts} = useSelector((state) => state.data);
+  const handleCapitalLetter = (e) => {
+    let letter = e[0].toUpperCase() + e.slice(1);
+    return letter;
+  }
 
     useEffect(() => {
-        dispatch(fetchData())
+      dispatch(fetchData());
     }, [])
   if (allData.isLoading) {
     return <Loading/>
   }
   return (
+    <>
+    
     <div className="container my-5">
       <div className="products-text text-center" >
         <div className="product-text-line">
-          <hr /><h1>New Products</h1><hr />
+            <hr /><h1>{handleCapitalLetter(cat)}</h1><hr />
       </div>
       <p>Collect your loves with our newest arrivals.</p>
       </div>
@@ -31,7 +37,8 @@ function ProductCards() {
                             </div>
                     })}      
             </div>
-        </div>
+      </div>
+    </>
   )
 }
 

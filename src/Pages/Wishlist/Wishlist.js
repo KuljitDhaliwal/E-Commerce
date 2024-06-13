@@ -1,10 +1,10 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import Product from '../Product/Product'
-import Cart from '../Cart/Cart';
+import Product from '../../Components/Product/Product'
+import Cart from '../../Components/Cart/Cart';
 import { useDispatch } from 'react-redux';
-import { closeSidebar } from '../Redux/Slices/CartSlice';
-import cart from '../Assets/emptyCart.webp'
+import { closeSidebar } from '../../Redux/Slices/CartSlice';
+import cart from '../../Components/Assets/emptyCart.webp'
 import './Wishlist.css'
 import { Link } from 'react-router-dom';
 

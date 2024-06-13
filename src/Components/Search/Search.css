@@ -1,0 +1,33 @@
+.search{
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    position: fixed;
+    z-index: 99999999;
+    overflow: scroll;
+    transition: 0.2s ease-in-out top;
+    top: -100vh;
+}
+
+.bottom{
+    top: 0;
+}
+
+.in-search{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.in-search-data{
+    margin-top: 5rem;
+}
+
+.in-search-data input{
+    border: 1px solid grey;
+    width: 600px;
+    padding: 1rem 1rem;
+    border-radius: 5px;
+}

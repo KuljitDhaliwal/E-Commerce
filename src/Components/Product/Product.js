@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { IoEyeOutline } from "react-icons/io5";
-import { selectWishlistProduct } from '../Redux/Slices/WishlistSlice'
+import { selectWishlistProduct } from '../../Redux/Slices/WishlistSlice'
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { FaHeart } from "react-icons/fa";
-import { setCartProducts } from '../Redux/Slices/CartSlice'
 import './Product.css'
-import {openModal} from '../Redux/Slices/ModalSlice'
+import {openModal} from '../../Redux/Slices/ModalSlice'
+import { setProduct } from '../../Redux/Slices/CartSlice';
 
 
 function Product(props) {
@@ -34,8 +34,8 @@ function Product(props) {
                     <div className="iconBack" onClick={(e) => dispatch(selectWishlistProduct(props.product))}>
                         <FaHeart style={checkIsinclide ? heartColor : iconStyle} />
                     </div>
-                    <div className="iconBack">
-                        <IoEyeOutline style={iconStyle} onClick={(e) => dispatch(openModal(props.id))} />
+                    <div className="iconBack" onClick={(e) => dispatch(openModal(props.product))}>
+                        <IoEyeOutline type='button' style={iconStyle} />
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@ function Product(props) {
                 <div className="price-add-to-cart mt-3">
                     <div className="in-price">
                         <p className='price'>${props.price}</p>
-                        <p className='cart-style' onClick={(e) => dispatch(setCartProducts(props.product))}><b>Add to cart</b></p>
+                        <p className='cart-style' onClick={(e) => { dispatch(openModal(props.product)); dispatch(setProduct(props.product)) }}><b>Add to cart</b></p>
                     </div>
                 </div>
             </div>

@@ -21,12 +21,24 @@ const allData = createSlice({
         allData: [],
         filteredProdcuts: [],
         selectedCategory: [],
-        isError: false
+        isError: false,
+        searchedProduct: []
     },
     reducers: {
         setCategory: (state, action) => {
             state.selectedCategory = action.payload;
-            state.filteredProdcuts = state.allData.filter((item) => item.category === action.payload)
+            if (action.payload) {
+                state.filteredProdcuts = state.allData.filter((item) => item.category === action.payload)
+            } else {
+                state.filteredProdcuts = state.allData.filter((item) => item.category === "electronics")
+            }
+        },
+        searchProduct: (state, action) => {
+            if (action.payload) {
+                state.searchedProduct = state.allData.filter((item) => item.title.toLowerCase().includes(action.payload.toLowerCase()));
+            } else {
+                state.searchedProduct = [];
+            }
         }
     },
     extraReducers: (builder) => {
@@ -37,7 +49,7 @@ const allData = createSlice({
         builder.addCase(fetchData.fulfilled, (state, action) => {
             state.isLoading = false;
             state.allData = action.payload;
-            state.filteredProdcuts = action.payload
+            state.filteredProdcuts = state.allData.filter((item) => item.category === "men's clothing")
             state.selectedCategory = action.payload
         })
         builder.addCase(fetchData.rejected, (state) => {
@@ -48,4 +60,4 @@ const allData = createSlice({
 })
 
 export default allData.reducer;
-export const { setCategory } = allData.actions;
+export const { setCategory, searchProduct } = allData.actions;

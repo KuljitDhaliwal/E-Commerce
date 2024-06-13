@@ -3,6 +3,7 @@ import allData from './Slices/indexSlice'
 import wishlist from './Slices/WishlistSlice'
 import cart from './Slices/CartSlice'
 import modal from './Slices/ModalSlice'
+import search from './Slices/SearchSlice'
 
 
 const store = configureStore({
@@ -10,7 +11,9 @@ const store = configureStore({
         data: allData,
         wishlist: wishlist,
         cart: cart,
-        modal: modal
+        modal: modal,
+        search: search
+
     }
 })
 

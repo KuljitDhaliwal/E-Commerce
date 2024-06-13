@@ -3,13 +3,13 @@ import './Navbar.css';
 import { CiSearch, CiUser, CiHeart, CiShoppingCart } from "react-icons/ci";
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { openSidebar } from '../Redux/Slices/CartSlice'
+import { openSidebar } from '../../Redux/Slices/CartSlice'
 
 
-function Navbar() {
+function Navbar({handleClick}) {
 
   const { wishlistedProducts } = useSelector((state) => state.wishlist);
-  const { cart } = useSelector((state) => state.cart);
+  const { finalCart } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const [navColor, setNavColor] = useState(false)
 
@@ -22,10 +22,12 @@ function Navbar() {
   }
 
 
+
   const iconStyles = {
     fontSize: '25px',
     fontWeight: '100',
-    color: 'black'
+    color: 'black',
+    cursor: 'pointer'
   }
 
   window.addEventListener('scroll', changeColor);
@@ -57,17 +59,16 @@ function Navbar() {
             </div>
           </div>
           <div className="navbar-logos d-flex gap-4">
-            <CiSearch style={iconStyles} />
+            <CiSearch style={iconStyles} onClick={handleClick}/>
             <CiUser style={iconStyles}/>
             <Link to={'/wishlist'} className='position-relative'>
               <CiHeart style={iconStyles} />
               <span class={wishlistedProducts.length <=0 ? "d-none" : "position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"}>{wishlistedProducts.length}</span>
             </Link>
             <div className='position-relative' style={{cursor: 'pointer'}} onClick={()=> dispatch(openSidebar())}><CiShoppingCart style={iconStyles} />
-              <span class={ cart.length <=0 ? "d-none" : "position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"}>{cart.length}</span>
+              <span class={ finalCart.length <=0 ? "d-none" : "position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"}>{finalCart.length}</span>
             </div>
           </div>
-
         </div>
       </nav>
 
