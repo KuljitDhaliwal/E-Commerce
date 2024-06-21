@@ -16,29 +16,29 @@ import Quantity from '../Quantity/Quantity';
 
 function Cart() {
     const state = useSelector((state) => state.cart);
-    console.log('FInalCart', state.finalCart)
+    console.log('cart', state.cart.map)
     const dispatch = useDispatch();
     var totalPrice = 0;
     return (
     <div className={`cart py-3 ${state.sidebarOpen ? 'open' : 'close'}`}>
           <div className="container">
               <div className="d-flex justify-content-between align-items-center">
-                  <h4>Shopping Cart({state.finalCart.length})</h4>
+                  <h4>Shopping Cart({state.cart.length})</h4>
                   <IoMdClose style={{fontSize: '1.5rem', cursor: 'pointer'}} onClick={()=> dispatch(closeSidebar())}/>
               </div>
               <div className="truck">
                   <div className="truck-road py-5">                      
                     <div className="road">
-                            <div className={state.finalCart <=0 ? 'road-track grey' : 'road-track red'}></div>
-                            <div className={state.finalCart.length <=0 ? 'truck-icon grey left' : 'truck-icon red right'}>
+                            <div className={state.cart <=0 ? 'road-track grey' : 'road-track red'}></div>
+                            <div className={state.cart.length <=0 ? 'truck-icon grey left' : 'truck-icon red right'}>
                                 <FaTruckFast className='truckicon'/>
                         </div>
                     </div>
                         <p className='mt-4'>Congratulations! You've got free shipping!</p>
                   </div>
               </div>
-              <h4 className={state.finalCart.length <= 0 ? 'd-none' : 'd-flex'}>Your Order</h4>
-              <div className={state.finalCart.length <=0 ? 'empty-cart' : 'd-none'}>
+              <h4 className={state.cart.length <= 0 ? 'd-none' : 'd-flex'}>Your Order</h4>
+              <div className={state.cart.length <=0 ? 'empty-cart' : 'd-none'}>
                   <BsFillCartXFill style={{ fontSize: '8rem' }} />
                   <h4 className='mt-4'>Your cart is empty.</h4>
                   <p className='text-center'>You may check out all the available products and buy some in the shop.</p>
@@ -54,13 +54,13 @@ function Cart() {
                       </tr>
                   </thead>
                   <tbody>
-                {state.finalCart.map((item, key) => {
+                {state.cart.map((item, key) => {
                     totalPrice += item.price * item.quantity
                       return  <tr>
                               <td><img src={item.image} alt="" height="100px" /></td>
                               <td className='p-4'>{item.title} <br /> ${item.price} <br />
                                 <div className="cus-container">        
-                                  <Quantity quantity={item.quantity} item={item} />
+                                  <Quantity quantity={item.quantity} product={item} />
                                 </div>
                               </td>
                           <td><MdDelete style={{ color: 'red', fontSize: '2rem', cursor: 'pointer' }} onClick={(e)=>dispatch(removeProduct(item.id))}/></td>
@@ -70,7 +70,7 @@ function Cart() {
               </table>
               </div>
         </div>
-              <div className={state.finalCart.length <=0 ? 'd-none' : 'total d-flex align-items-center justify-content-between'}>
+              <div className={state.cart.length <=0 ? 'd-none' : 'total d-flex align-items-center justify-content-between'}>
                     <h4>Subtotal</h4>
                 <b>${totalPrice}</b>
               </div>

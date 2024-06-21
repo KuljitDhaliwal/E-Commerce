@@ -4,12 +4,12 @@ import { CiSearch, CiUser, CiHeart, CiShoppingCart } from "react-icons/ci";
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { openSidebar } from '../../Redux/Slices/CartSlice'
+import { useNavigate } from 'react-router-dom';
 
-
-function Navbar({handleClick}) {
+function Navbar({handleClick, setLogin}) {
 
   const { wishlistedProducts } = useSelector((state) => state.wishlist);
-  const { finalCart } = useSelector((state) => state.cart);
+  const { cart } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const [navColor, setNavColor] = useState(false)
 
@@ -20,7 +20,15 @@ function Navbar({handleClick}) {
       setNavColor(false)
     }
   }
-
+  const navigate = useNavigate();
+  const loggedIn = JSON.parse(localStorage.getItem("loggedIn"));
+  const handleLogin = () => {
+    if (loggedIn) {
+      navigate('/login');
+    } else {
+      setLogin(true);
+    }
+  }
 
 
   const iconStyles = {
@@ -38,10 +46,10 @@ function Navbar({handleClick}) {
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <Link class="navbar-brand" to={'/'}>ALUKAS & CO.</Link>
+          <Link class="navbar-brand" to={'/'}>FINE & CO.</Link>
           <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">ALUKAS & CO.</h5>
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">FINE & CO.</h5>
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
@@ -60,44 +68,7 @@ function Navbar({handleClick}) {
           </div>
           <div className="navbar-logos d-flex gap-4">
             <CiSearch style={iconStyles} onClick={handleClick}/>
-            <CiUser style={iconStyles}/>
-            <Link to={'/wishlist'} className='position-relative'>
-              <CiHeart style={iconStyles} />
-              <span class={wishlistedProducts.length <=0 ? "d-none" : "position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"}>{wishlistedProducts.length}</span>
-            </Link>
-            <div className='position-relative' style={{cursor: 'pointer'}} onClick={()=> dispatch(openSidebar())}><CiShoppingCart style={iconStyles} />
-              <span class={ finalCart.length <=0 ? "d-none" : "position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"}>{finalCart.length}</span>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-
-
-      {/* <nav  av className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid">
-          <div className="d-flex flex-column-reverse flex-column">
-          <a className="navbar-brand" href="#">ALUKAS & CO.</a>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          </div>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent" style={{flexGrow: "0"}}>
-            <ul className="navbar-nav gap-3 me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to={'/'}>Home</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" href="#">Shop</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/products">Products</Link>
-              </li>
-            </ul>
-          </div>
-          <div className="navbar-logos d-flex gap-4">
-            <CiSearch style={iconStyles} />
-            <CiUser style={iconStyles}/>
+            <CiUser style={iconStyles} onClick={handleLogin}/>
             <Link to={'/wishlist'} className='position-relative'>
               <CiHeart style={iconStyles} />
               <span class={wishlistedProducts.length <=0 ? "d-none" : "position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"}>{wishlistedProducts.length}</span>
@@ -107,7 +78,7 @@ function Navbar({handleClick}) {
             </div>
           </div>
         </div>
-      </nav> */}
+      </nav>
     </div>
   )
 }

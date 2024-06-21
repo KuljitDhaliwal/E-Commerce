@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { act } from "react";
 
 const modal = createSlice({
     name: 'modal',
@@ -7,13 +8,16 @@ const modal = createSlice({
             title: '',
             price: null,
             description: '',
-            image: ''
+            image: '',
         },
+        item: [],
         modalState: false
     },
     reducers: {
         openModal: (state, action) => {
+            state.item = action.payload;
             state.modalState = true;
+            state.product.id = action.payload.id;
             state.product.title = action.payload.title;
             state.product.price = action.payload.price;
             state.product.description = action.payload.description;

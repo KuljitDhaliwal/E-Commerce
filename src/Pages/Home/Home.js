@@ -39,7 +39,7 @@ function Home({openSearch}) {
 
   return (
     <div>
-      <Cart />
+
 
       <div className='home'>
       <div className={sidebarOpen ? 'overlay' : ''} onClick={() => dispatch(closeSidebar())}></div>

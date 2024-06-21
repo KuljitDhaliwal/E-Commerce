@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 import { FaHeart } from "react-icons/fa";
 import './Product.css'
 import {openModal} from '../../Redux/Slices/ModalSlice'
-import { setProduct } from '../../Redux/Slices/CartSlice';
 
 
 function Product(props) {
@@ -47,7 +46,7 @@ function Product(props) {
                 <div className="price-add-to-cart mt-3">
                     <div className="in-price">
                         <p className='price'>${props.price}</p>
-                        <p className='cart-style' onClick={(e) => { dispatch(openModal(props.product)); dispatch(setProduct(props.product)) }}><b>Add to cart</b></p>
+                        <p className='cart-style' onClick={(e) =>  dispatch(openModal(props.product))}><b>Add to cart</b></p>
                     </div>
                 </div>
             </div>

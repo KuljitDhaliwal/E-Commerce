@@ -4,33 +4,34 @@ const cart = createSlice({
     name: 'cart',
     initialState: {
         cart: [],
-        product: [],
-        finalCart: [],
+        productQuantity: 1,
+        quantities: {},
         sidebarOpen: false
     },
     reducers: {
         setCartProducts: (state, action) => {
-            const itemIndex = state.cart.findIndex((item) => item.id === action.payload.id);
+            const { quantity, id } = action.payload;
+            const itemIndex = state.cart.findIndex((item) => item.id === id);
             if (itemIndex >= 0) {
-                state.cart[itemIndex].quantity += 1;
+                state.cart[itemIndex].quantity += quantity;
             } else {
-                const tempProduct = { ...action.payload, quantity: 1 };
-                state.cart.push(tempProduct);
+                state.cart.push(action.payload);
             }    
         },
-        setProduct: (state, action) => {
-            state.product.push(action.payload)
+        itemIncrement: (state, action) => { 
+            const itemIndex = state.cart.findIndex((item) => item.id === action.payload.id)
+            if (itemIndex >= 0) {
+                state.cart[itemIndex].quantity += 1;
+                state.productQuantity += 1;
+            } else {
+                state.productQuantity += 1;
+            }
         },
-        productQuantity: (state, action) => {
-            state.cartQuantity = action.payload;
+        itemDecrement: (state) => {
+            state.productQuantity -= 1;
         },
-        itemIncrement: (state, action) => {
-            const itemIndex = state.cart.findIndex((item) =>  item.id === action.payload.id );
-            state.cart[itemIndex].quantity += 1;
-        },
-        itemDecrement: (state, action) => {
-            const itemIndex = state.cart.findIndex((item) => item.id === action.payload.id);
-            state.cart[itemIndex].quantity -= 1;
+        resetQuantity: (state) => {
+            state.productQuantity = 1;  
         },
         openSidebar: (state) => {
             state.sidebarOpen = true;
@@ -41,13 +42,10 @@ const cart = createSlice({
         removeProduct: (state, action) => {
             state.cart = state.cart.filter((item) => item.id !== action.payload)
             state.finalCart = state.cart;
-        },
-        emptyModal: (state) => {
-            state.cart = [];
         }
 
     }
 })
 
 export default cart.reducer
-export const {setCartProducts, itemIncrement, itemDecrement, closeSidebar, openSidebar, removeProduct, setProduct,finalCart, emptyModal} = cart.actions
+export const {setCartProducts, itemIncrement, itemDecrement, closeSidebar, openSidebar, removeProduct, resetQuantity} = cart.actions
