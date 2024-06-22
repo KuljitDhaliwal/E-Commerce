@@ -9,7 +9,7 @@
     transform: translate(-50%, -50%);
     display: flex;
     background-color: rgba(59, 56, 56, 0.567);
-    overflow: auto;
+    
 }
 
 .in-modal{
@@ -21,12 +21,10 @@
     transform: translate(-50%, -50%);
     display: flex;
     background-color: white;
+    overflow: auto;
 }
 
 .product-details{
-    overflow: auto;
-    max-height: 80vh;
-    overflow: scroll;
     padding: 4rem;
 }
 

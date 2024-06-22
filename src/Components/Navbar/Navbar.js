@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import './Navbar.css';
 import { CiSearch, CiUser, CiHeart, CiShoppingCart } from "react-icons/ci";
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { openSidebar } from '../../Redux/Slices/CartSlice'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavNavLink, Link } from 'react-router-dom';
 
 function Navbar({handleClick, setLogin}) {
 
@@ -53,15 +53,12 @@ function Navbar({handleClick, setLogin}) {
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-              <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
-                <li className="nav-item">
-                  <Link className='nav-link active' aria-current="page" to={'/'}>Home</Link>
+              <ul class="navbar-nav justify-content-center flex-grow-1 ">
+                <li className="nav-item me-4">
+                  <NavLink  className='nav-NavLink' aria-current="page" to={'/'}>Home</NavLink>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link" href="#">Shop</Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/products">Products</Link>
+                <li className="nav-item me-4">
+                  <NavLink  className="nav-NavLink" to="/products">Products</NavLink>
                 </li>
               </ul>
             </div>
@@ -69,10 +66,10 @@ function Navbar({handleClick, setLogin}) {
           <div className="navbar-logos d-flex gap-4">
             <CiSearch style={iconStyles} onClick={handleClick}/>
             <CiUser style={iconStyles} onClick={handleLogin}/>
-            <Link to={'/wishlist'} className='position-relative'>
+            <NavLink to={'/wishlist'} className='position-relative'>
               <CiHeart style={iconStyles} />
               <span class={wishlistedProducts.length <=0 ? "d-none" : "position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"}>{wishlistedProducts.length}</span>
-            </Link>
+            </NavLink>
             <div className='position-relative' style={{cursor: 'pointer'}} onClick={()=> dispatch(openSidebar())}><CiShoppingCart style={iconStyles} />
               <span class={ cart.length <=0 ? "d-none" : "position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"}>{cart.length}</span>
             </div>

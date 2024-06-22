@@ -19,7 +19,6 @@ import LoginModal from './Components/LoginModal/LoginModal';
 
 function App() {
   const { product } = useSelector((state) => state.modal);
-  const state = useSelector((state) => state.cart);
 
   const [openSearch, setOpenSearch] = useState(false);
   const handleSearch = () => {

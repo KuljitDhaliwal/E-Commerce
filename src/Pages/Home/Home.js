@@ -39,17 +39,15 @@ function Home({openSearch}) {
 
   return (
     <div>
-
-
       <div className='home'>
-      <div className={sidebarOpen ? 'overlay' : ''} onClick={() => dispatch(closeSidebar())}></div>
-      <Hero />
-      <Features />
-      <Gender />
-      <ProductList handleCat={handleCat} cat={ cat} />
-      <ProductCards cat={cat} />
-      <ManWoman />
-    </div>
+        <div className={sidebarOpen ? 'overlay' : ''} onClick={() => dispatch(closeSidebar())}></div>
+        <Hero />
+        <Features />
+        <Gender />
+        <ProductList handleCat={handleCat} cat={cat} />
+        <ProductCards cat={cat} />
+        <ManWoman />
+      </div>
     </div>
   )
 }
